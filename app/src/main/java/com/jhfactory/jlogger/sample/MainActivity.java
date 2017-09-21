@@ -49,4 +49,7 @@ public class MainActivity extends AppCompatActivity {
             Logger.printStackTrace(e);
         }
     }
+
+    // TODO: 2017-09-12 Intent logger 
+    // TODO: 2017-09-12  
 }
