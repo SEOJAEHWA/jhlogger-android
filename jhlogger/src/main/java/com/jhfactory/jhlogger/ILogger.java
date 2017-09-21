@@ -13,6 +13,8 @@ interface ILogger {
 
     void d(String msg, boolean showStackTrace);
 
+    void d(String msg, int shownStackTraceCount);
+
     void w(String msg);
 
     void e(String msg);

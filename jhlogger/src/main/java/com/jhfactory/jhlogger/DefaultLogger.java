@@ -41,6 +41,11 @@ class DefaultLogger implements ILogger {
     }
 
     @Override
+    public void d(String msg, int shownStackTraceCount) {
+        Log.d(Logger.getTag(), getLogMessage(msg, true, shownStackTraceCount));
+    }
+
+    @Override
     public void w(String msg) {
         Log.w(Logger.getTag(), getLogMessage(msg));
     }
@@ -123,21 +128,42 @@ class DefaultLogger implements ILogger {
     }
 
     private String getLogMessage(final String msg, boolean showStackTrace) {
+        return getLogMessage(msg, showStackTrace, 1);
+    }
+
+    private String getLogMessage(final String msg, boolean showStackTrace, int shownStackTraceCount) {
         if (showStackTrace) {
             final StackTraceElement[] stackTraceElements = Thread.currentThread().getStackTrace();
             try {
-                if (stackTraceElements.length >= Logger.getStackTraceIdx()) {
-                    final StackTraceElement element = stackTraceElements[Logger.getStackTraceIdx()];
-                    return msg + "\n> " +
+                int stackTraceOffset = getStackTraceOffset(stackTraceElements);
+                String stackTraceMsg = "";
+                for (int i = 0; i < shownStackTraceCount; i++) {
+                    if (stackTraceOffset + i >= stackTraceElements.length) {
+                        break;
+                    }
+                    final StackTraceElement element = stackTraceElements[stackTraceOffset + i];
+                    stackTraceMsg += "\n> " +
                             Class.forName(element.getClassName()).getSimpleName() + "." +
                             element.getMethodName() + " (" + element.getFileName() + ":" +
                             element.getLineNumber() + ")";
                 }
+                return msg + stackTraceMsg;
             }
             catch (ClassNotFoundException e) {
                 Log.e(Logger.getTag(), e.getMessage() + "\n" + msg);
             }
         }
         return msg;
+    }
+
+    private int getStackTraceOffset(StackTraceElement[] trace) {
+        for (int i = Logger.getStackTraceIdx(); i < trace.length; i++) {
+            StackTraceElement e = trace[i];
+            String name = e.getClassName();
+            if (!name.equals(DefaultLogger.class.getName()) && !name.equals(Logger.class.getName())) {
+                return i;
+            }
+        }
+        return -1;
     }
 }

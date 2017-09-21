@@ -38,6 +38,12 @@ public class Logger {
         }
     }
 
+    public static void d(String msg, int shownStackTraceCount) {
+        if (getLogLevel().equals(LogLevel.DEBUG)) {
+            logger.d(msg, shownStackTraceCount);
+        }
+    }
+
     public static void w(String msg) {
         if (getLogLevel().equals(LogLevel.DEBUG)) {
             logger.w(msg);
@@ -61,6 +67,7 @@ public class Logger {
             logger.d(msg, tr);
         }
     }
+
     public static void d(String msg, Throwable tr, boolean showStackTrace) {
         if (getLogLevel().equals(LogLevel.DEBUG)) {
             logger.d(msg, tr, showStackTrace);
