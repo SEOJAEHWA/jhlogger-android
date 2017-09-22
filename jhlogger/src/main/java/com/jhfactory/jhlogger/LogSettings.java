@@ -6,8 +6,9 @@ public class LogSettings {
     private boolean showThreadInfo = false;
     private String tag = "SMARTINFINI";
     private int stackTraceIdx = 5;
+    private int shownStackTraceCount = 1;
 
-    LogLevel getLogLevel() {
+    public LogLevel getLogLevel() {
         return logLevel;
     }
 
@@ -16,7 +17,7 @@ public class LogSettings {
         return this;
     }
 
-    String getTag() {
+    public String getTag() {
         return tag;
     }
 
@@ -25,7 +26,7 @@ public class LogSettings {
         return this;
     }
 
-    int getStackTraceIdx() {
+    public int getStackTraceIdx() {
         return stackTraceIdx;
     }
 
@@ -34,12 +35,21 @@ public class LogSettings {
         return this;
     }
 
-    boolean isShowThreadInfo() {
+    public int getShownStackTraceCount() {
+        return shownStackTraceCount;
+    }
+
+    public boolean isShowThreadInfo() {
         return showThreadInfo;
     }
 
     public LogSettings setShowThreadInfo(boolean showThreadInfo) {
         this.showThreadInfo = showThreadInfo;
         return this;
+    }
+
+
+    public boolean showStackTrace() {
+        return getLogLevel().equals(LogLevel.DEBUG) && isShowThreadInfo();
     }
 }

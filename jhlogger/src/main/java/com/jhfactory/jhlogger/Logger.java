@@ -1,5 +1,7 @@
 package com.jhfactory.jhlogger;
 
+import android.content.Intent;
+
 /**
  *
  */
@@ -7,122 +9,93 @@ public class Logger {
 
     private static LogSettings settings;
     private static ILogger logger;
+    private static IExtLogger extLogger;
 
     public static LogSettings init() {
         settings = new LogSettings();
-        logger = new DefaultLogger();
+        logger = new PrintDefaultLogger(settings);
+        extLogger = new PrintExtendLogger(settings);
+        new PrintLogger(settings);
         return settings;
     }
 
+    private static boolean showLogOnReleaseMode() {
+        return settings.getLogLevel().equals(LogLevel.RELEASE) || showLogOnDebugMode();
+    }
+
+    private static boolean showLogOnDebugMode() {
+        return settings.getLogLevel().equals(LogLevel.DEBUG);
+    }
+
     public static void v(String msg) {
-        if (getLogLevel().equals(LogLevel.RELEASE) || getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnReleaseMode()) {
             logger.v(msg);
         }
     }
 
     public static void i(String msg) {
-        if (getLogLevel().equals(LogLevel.RELEASE) || getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnReleaseMode()) {
             logger.i(msg);
         }
     }
 
     public static void d(String msg) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnDebugMode()) {
             logger.d(msg);
         }
     }
 
     public static void d(String msg, boolean showStackTrace) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnDebugMode()) {
             logger.d(msg, showStackTrace);
         }
     }
 
     public static void d(String msg, int shownStackTraceCount) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnDebugMode()) {
             logger.d(msg, shownStackTraceCount);
         }
     }
 
     public static void w(String msg) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnDebugMode()) {
             logger.w(msg);
         }
     }
 
     public static void e(String msg) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnDebugMode()) {
             logger.e(msg);
         }
     }
 
     public static void wtf(String msg) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
+        if (showLogOnDebugMode()) {
             logger.wtf(msg);
         }
     }
 
-    public static void d(String msg, Throwable tr) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            logger.d(msg, tr);
-        }
-    }
-
-    public static void d(String msg, Throwable tr, boolean showStackTrace) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            logger.d(msg, tr, showStackTrace);
-        }
-    }
-
-    public static void w(String msg, Throwable tr) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            logger.w(msg, tr);
-        }
-    }
-
-    public static void e(String msg, Throwable tr) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            logger.e(msg, tr);
-        }
-    }
-
-    public static void wtf(String msg, Throwable tr) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            logger.wtf(msg, tr);
-        }
-    }
-
     public static void json(String json) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            logger.json(json);
+        if (showLogOnDebugMode()) {
+            extLogger.json(json);
         }
     }
 
     public static void json(String msg, String json) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            logger.json(msg, json);
+        if (showLogOnDebugMode()) {
+            extLogger.json(msg, json);
         }
     }
 
     public static void printStackTrace(Exception e) {
-        if (getLogLevel().equals(LogLevel.DEBUG)) {
-            e.printStackTrace();
+        if (showLogOnDebugMode()) {
+            extLogger.printStackTrace(e);
         }
     }
 
-    static String getTag() {
-        return settings.getTag();
-    }
-
-    static LogLevel getLogLevel() {
-        return settings.getLogLevel();
-    }
-
-    static int getStackTraceIdx() {
-        return settings.getStackTraceIdx();
-    }
-
-    static boolean isShowThreadInfo() {
-        return settings.isShowThreadInfo();
+    public static void intent(Intent intent) {
+        if (showLogOnDebugMode()) {
+            extLogger.intent(intent);
+        }
     }
 }

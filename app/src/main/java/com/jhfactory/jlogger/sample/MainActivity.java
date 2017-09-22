@@ -1,5 +1,6 @@
 package com.jhfactory.jlogger.sample;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -26,8 +27,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Logger.v("onCreate -------------------------------");
         Logger.i("onCreate -------------------------------");
-        Logger.d("onCreate -------------------------------");
         Logger.d("onCreate -------------------------------", false);
+        Logger.d("onCreate -------------------------------");
+        Logger.d("onCreate -------------------------------", 2);
         Logger.w("onCreate -------------------------------");
         Logger.e("onCreate -------------------------------");
 
@@ -48,8 +50,15 @@ public class MainActivity extends AppCompatActivity {
         catch (NullPointerException e) {
             Logger.printStackTrace(e);
         }
-    }
 
-    // TODO: 2017-09-12 Intent logger 
-    // TODO: 2017-09-12  
+        Intent intent = getIntent();
+        intent.putExtra("test1", 1234);
+        intent.putExtra("test2", "SEOJAEHWA");
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("test1", 5678);
+        bundle.putString("test2", "AWHEAJOES");
+        intent.putExtra("newBundle", bundle);
+        Logger.intent(intent);
+    }
 }

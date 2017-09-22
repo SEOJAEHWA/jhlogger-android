@@ -7,8 +7,7 @@ import android.support.annotation.NonNull;
  */
 public enum LogLevel {
     RELEASE,   // hide all logs
-    DEBUG,  // show all logs
-    INFO; // show only info, verbose logs
+    DEBUG;  // show all logs
 
     public static LogLevel fromString(@NonNull String text) {
         for (LogLevel b : LogLevel.values()) {
@@ -16,6 +15,6 @@ public enum LogLevel {
                 return b;
             }
         }
-        return INFO;
+        return DEBUG;
     }
 }
