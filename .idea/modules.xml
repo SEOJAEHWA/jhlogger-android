@@ -4,7 +4,10 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Sample-jhlogger.iml" filepath="$PROJECT_DIR$/Sample-jhlogger.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/jhlogger/jhlogger.iml" filepath="$PROJECT_DIR$/jhlogger/jhlogger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jhlogger/jhlogger.iml" filepath="$PROJECT_DIR$/jhlogger/jhlogger.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jhlogger-android.iml" filepath="$PROJECT_DIR$/jhlogger-android.iml" />
     </modules>
   </component>
 </project>

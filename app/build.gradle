@@ -1,14 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion build_version.target_sdk
+    buildToolsVersion build_version.build_tools
+
     defaultConfig {
-        applicationId "com.jhfactory.jlogger.sample"
-        minSdkVersion 16
-        targetSdkVersion 26
-        versionCode 1
-        versionName "0.1.2"
+        applicationId "com.jhfactory.aospimagepick.sample"
+        minSdkVersion build_version.min_sdk
+        targetSdkVersion build_version.target_sdk
+        versionCode build_version.aospimagepick_code
+        versionName build_version.aospimagepick_name
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -20,12 +21,12 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    compile 'com.android.support:appcompat-v7:26.0.0-alpha1'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
-    compile project(':jhlogger')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':jhlogger')
+    implementation deps.support.appcompat
+    implementation deps.support.annotations
+    implementation deps.constraint_layout
+    testImplementation deps.junit
+    androidTestImplementation deps.atsl.runner
+    androidTestImplementation deps.espresso.core
 }
