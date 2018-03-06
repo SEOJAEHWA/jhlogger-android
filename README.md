@@ -39,7 +39,7 @@ If you do not want to show trace info...
 Logger.d("onCreate -------------------------------", false);
 ```
 ### Logcat
-
+<img src='https://github.com/SEOJAEHWA/jhlogger-android/blob/master/images/logcat_capt.PNG'/>
 
 
 
