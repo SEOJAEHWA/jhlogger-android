@@ -31,6 +31,7 @@ Logger.d("onCreate -------------------------------");
 Logger.w("onCreate -------------------------------");
 Logger.e("onCreate -------------------------------");
 Logger.printStackTrace(e);
+Logger.json(json);
 Logger.intent(intent);
 ```
 
