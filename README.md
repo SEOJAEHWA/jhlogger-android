@@ -7,7 +7,7 @@ Show log stack trace, json object, intent object.
 Download:
 ```groovy
 dependencies {
-    implementation 'com.jhfactory:jhlogger:0.9.0'
+    implementation 'com.jhfactory:jhlogger:0.9.3'
 }
 ```
 
