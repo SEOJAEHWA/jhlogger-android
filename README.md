@@ -31,6 +31,7 @@ Logger.d("onCreate -------------------------------");
 Logger.w("onCreate -------------------------------");
 Logger.e("onCreate -------------------------------");
 Logger.printStackTrace(e);
+Logger.json(json);
 Logger.intent(intent);
 ```
 
@@ -39,7 +40,7 @@ If you do not want to show trace info...
 Logger.d("onCreate -------------------------------", false);
 ```
 ### Logcat
-<img src='https://github.com/SEOJAEHWA/jhlogger-android/blob/master/images/logcat_capt.PNG'/>
+<img src='https://github.com/SEOJAEHWA/jhlogger-android/blob/master/images/logcat_capt2.PNG'/>
 
 
 
