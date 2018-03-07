@@ -98,11 +98,12 @@ class PrintLog implements ILogger {
     @Override
     public void json(String msg, String json) {
         if (!TextUtils.isEmpty(msg)) {
-            Log.d(getTag(), printLogMessage(msg));
+            Log.d(getTag(), printLogMessage(msg, false));
         }
         for (String log : LogUtils.getPrettyJsonStringArray(json)) {
             Log.d(getTag(), log);
         }
+        Log.d(getTag(), printLogMessage(""));
     }
 
     @Override
