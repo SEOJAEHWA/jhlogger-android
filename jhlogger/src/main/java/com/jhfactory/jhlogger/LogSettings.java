@@ -1,6 +1,6 @@
 package com.jhfactory.jhlogger;
 
-public class LogSettings {
+public final class LogSettings {
 
     private LogLevel logLevel = LogLevel.DEBUG;
     private boolean showThreadInfo = false;

@@ -27,9 +27,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Logger.v("onCreate -------------------------------");
         Logger.i("onCreate -------------------------------");
-        Logger.d("onCreate -------------------------------", false);
         Logger.d("onCreate -------------------------------");
-        Logger.d("onCreate -------------------------------", 2);
+//        Logger.d("onCreate -------------------------------", 2);
         Logger.w("onCreate -------------------------------");
         Logger.e("onCreate -------------------------------");
 
@@ -60,5 +59,7 @@ public class MainActivity extends AppCompatActivity {
         bundle.putString("test2", "AWHEAJOES");
         intent.putExtra("newBundle", bundle);
         Logger.intent(intent);
+
+        Logger.d("------------------------------------------------- END", false);
     }
 }

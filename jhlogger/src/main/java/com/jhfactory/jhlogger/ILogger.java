@@ -1,5 +1,7 @@
 package com.jhfactory.jhlogger;
 
+import android.content.Intent;
+
 /**
  *
  */
@@ -22,4 +24,12 @@ interface ILogger {
     void e(String msg);
 
     void wtf(String msg);
+
+    void json(String json);
+
+    void json(String msg, String json);
+
+    void printStackTrace(Exception e);
+
+    void intent(Intent intent);
 }
