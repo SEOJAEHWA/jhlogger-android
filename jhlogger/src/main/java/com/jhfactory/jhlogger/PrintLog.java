@@ -139,23 +139,23 @@ class PrintLog implements ILogger {
         return settings.getShownStackTraceCount();
     }
 
-    private String printLogMessage(String msg) {
+    private synchronized String printLogMessage(String msg) {
         return printLogMessage(msg, showStackTrace(), getStackTraceIdx(), getShownStackTraceCount());
     }
 
-    private String printLogMessage(String msg, int shownStackTraceCount) {
+    private synchronized String printLogMessage(String msg, int shownStackTraceCount) {
         return printLogMessage(msg, true, getStackTraceIdx(), shownStackTraceCount);
     }
 
-    private String printLogMessage(String msg, boolean showStackTrace) {
+    private synchronized String printLogMessage(String msg, boolean showStackTrace) {
         return printLogMessage(msg, showStackTrace, getStackTraceIdx(), getShownStackTraceCount());
     }
 
-    private String printLogMessage(String msg, boolean showStackTrace, int shownStackTraceCount) {
+    private synchronized String printLogMessage(String msg, boolean showStackTrace, int shownStackTraceCount) {
         return printLogMessage(msg, showStackTrace, getStackTraceIdx(), shownStackTraceCount);
     }
 
-    private String printLogMessage(final String msg, boolean showStackTrace, int stackTraceIdx, int shownStackTraceCount) {
+    private synchronized String printLogMessage(final String msg, boolean showStackTrace, int stackTraceIdx, int shownStackTraceCount) {
         if (showStackTrace) {
             return msg + LogUtils.getStackTraceMessage(stackTraceIdx, shownStackTraceCount);
         }
